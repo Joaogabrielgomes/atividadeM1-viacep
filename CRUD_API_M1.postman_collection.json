@@ -1,0 +1,93 @@
+{
+  "info": {
+    "name": "CRUD API - Atividade M1",
+    "_postman_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+    "description": "Collection para testar o endpoint de disponibilidade de produto por CEP (ViaCEP integration)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Check Product Availability by CEP",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/product/availability?productId=p1&cep=08773380",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["product", "availability"],
+          "query": [
+            {
+              "key": "productId",
+              "value": "p1",
+              "description": "ID do produto a verificar"
+            },
+            {
+              "key": "cep",
+              "value": "08773380",
+              "description": "CEP a consultar (sem hífen)"
+            }
+          ]
+        },
+        "description": "Verifica se o produto está disponível na cidade correspondente ao CEP informado.\n\nRetorna { \"available\": true } se a cidade do CEP bater com o distribution_center do produto, false caso contrário.\n\nExemplos de CEPs para testar:\n- Mogi das Cruzes: 08773380\n- Recife: 50010000\n- Porto Alegre: 90010000"
+      },
+      "response": [
+        {
+          "name": "Produto disponível (true)",
+          "originalRequest": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:8080/product/availability?productId=p1&cep=08773380"
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "body": "{\n  \"available\": true\n}"
+        },
+        {
+          "name": "Produto não disponível (false)",
+          "originalRequest": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:8080/product/availability?productId=p1&cep=50010000"
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "body": "{\n  \"available\": false\n}"
+        }
+      ]
+    },
+    {
+      "name": "Get All Products",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/product",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["product"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Product by ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/product/endpoint2/p1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["product", "endpoint2", "p1"]
+        }
+      },
+      "response": []
+    }
+  ]
+}
